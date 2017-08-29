@@ -1,0 +1,16 @@
+ string filePath = Application.streamingAssetsPath + "/Items.json";
+             string jsonString;
+             
+             if (Application.platform == RuntimePlatform.Android)
+             {
+                 WWW reader = new WWW(filePath);
+                 while (!reader.isDone) { }
+     
+                 jsonString = reader.text;
+             }
+             else
+             {
+                 jsonString = File.ReadAllText(filePath);
+             }
+     
+             JsonData itemData = JsonMapper.ToObject(jsonString);
